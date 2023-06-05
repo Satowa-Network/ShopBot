@@ -1,0 +1,4 @@
+CLIENT_ID=<your Bot client id>
+TOKEN=<your Bot token>
+IBAN=<your satowa network iban>
+SN_TOKEN=<your api token>
