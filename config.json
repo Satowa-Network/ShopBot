@@ -1,0 +1,14 @@
+{
+  "shop": {
+    "products": {
+      "bot_hosting": {
+        "name": "Bot Hosting",
+        "price": 5000
+      },
+      "discord_nitro": {
+        "name": "Discord Nitro",
+        "price": 1000
+      }
+    }
+  }
+}
