@@ -12,9 +12,9 @@ module.exports = {
                 .setDescription("Please enter the product you want to buy")
                 .setRequired(true)
                 .addChoices(
-                    {name: "1 Server slot", value: "server_slot"},
-                            {name: "10 Server slots", value: "multi_server_slot"},
-                            {name: "Coins", value:"coins"}
+                    {name: "Product 1", value: "prod_1"},
+                            {name: "Product 2", value: "prod_2"},
+                            {name: "Product 3", value:"prod_3"}
                 )
         )
         .addStringOption(string => string
@@ -31,19 +31,19 @@ module.exports = {
             .setDescription("Please enter your Code from your Satowa Network Bank Account")
         )
         .addStringOption(string => string
-            .setName("hostingtype")
-            .setDescription("Please select what type of bot you want to host")
+            .setName("selection")
+            .setDescription("Please select what type of extra products you want")
             .setRequired(false)
             .addChoices(
-                {name: "Python Bot Server", value:"py"},
-                        {name: "JavaScript Bot Server", value: "js"},
-                        {name: "Java Bot Server", value: "java"},
-                        {name: "Web Server", value:"web"},
-                        {name: "Minecraft Server", value: "mc"}
+                {name: "Extra 1", value:"ex1"},
+                        {name: "Extra 2", value: "ex2"},
+                        {name: "Extra 3", value: "ex3"},
+                        {name: "Extra 4", value:"ex4"},
+                        {name: "Extra 5", value: "ex5"}
             ))
         .addIntegerOption(int => int
             .setName("amount")
-            .setDescription("Please enter how much coins you want to buy")
+            .setDescription("Please enter how much you want to buy")
             .setRequired(false)
         ),
     async run(interaction, config) {
@@ -51,7 +51,7 @@ module.exports = {
         const iban = interaction ? interaction.options.getString("iban") : null;
         const code = interaction ? interaction.options.getString("code") :null;
         const coins = interaction ? interaction.options.getInteger("amount") : null;
-        let hostingType = interaction ? interaction.options.getString("hostingtype") : null;
+        let hostingType = interaction ? interaction.options.getString("selection") : null;
         if(!product || !iban || !code) {
             return interaction.reply("Sorry but you entered invalid parameters!");
         }
@@ -104,7 +104,7 @@ module.exports = {
                     }
 
 
-                    if(product !== "coins"  && hostingType != null) {
+                    if(product !== "amount"  && hostingType != null) {
                         while (hostingType.length < 16) {
                             hostingType = hostingType + ' ';
                         }
@@ -115,7 +115,7 @@ module.exports = {
 ## Your purchase was successfully made!
 Here is your Receipt:
 \`\`\`
-          SCODEDEV
+          ${process.env.COMPANY_NAME}
 +-----------------------------+
 | Product          |  Price   |
 +-----------------------------+
@@ -127,7 +127,7 @@ Here is your Receipt:
 +-----------------------------+
 
 Transaction ID: ${responseBody.transaction_id}
-Support: support@scodedev.de
+Support: ${process.env.SUPPORT}
 Banking System Support: support@satowa-network.eu
 \`\`\`
 `)
@@ -135,14 +135,14 @@ Banking System Support: support@satowa-network.eu
             });
         }
 
-        if(product === "server_slot") {
+        if(product === "prod_1") {
             if(hostingType == null) {
-                return await interaction.reply("Please enter a Hosting Type!");
+                return await interaction.reply("Please enter a selection Type!");
             }
-            console.log(await createTransaction(iban, code, "1 Server slot", "200"));
-        } else if(product === "multi_server_slot") {
-            console.log(await createTransaction(iban, code, "10 Server slots", "1000"));
-        } else if(product === "coins") {
+            console.log(await createTransaction(iban, code, "Data 1", "Price as int"));
+        } else if(product === "prod_2") {
+            console.log(await createTransaction(iban, code, "Data 2", "Price as int"));
+        } else if(product === "prod_3") {
             if(coins < 1000) {
                 return interaction.reply("You entered an invalid amount of coins");
             }

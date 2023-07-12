@@ -2,3 +2,6 @@ CLIENT_ID=<your Bot client id>
 TOKEN=<your Bot token>
 IBAN=<your satowa network iban>
 SN_TOKEN=<your api token>
+DOMAIN=<your domain>
+SUPPORT=<your support contact email address>
+COMPANY_NAME=<your company / shop name
