@@ -10,12 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/rest": "^1.7.1",
-    "discord-api-types": "^0.37.42",
-    "discord.js": "^14.11.0",
-    "dotenv": "^16.0.3",
-    "form-data": "^4.0.0",
-    "node-fetch": "^3.3.1",
-    "request": "^2.88.2"
+    "@discordjs/rest": "1.7.1",
+    "discord-api-types": "0.37.42",
+    "discord.js": "14.11.0",
+    "dotenv": "16.0.3",
+    "form-data": "4.0.0",
+    "node-fetch": "3.3.1",
+    "request": "2.88.2"
   }
 }
